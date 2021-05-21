@@ -1,0 +1,8 @@
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - sourmash>=4.1.0,<5 
+    - krona=2.8
+    - pandas=1.2.4
