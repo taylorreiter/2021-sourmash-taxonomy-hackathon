@@ -3,6 +3,7 @@ channels:
     - bioconda
     - defaults
 dependencies:
+  - pip
   - pip:
     - git+https://github.com/dib-lab/sourmash@add-taxonomy
   #- sourmash>=4.1.0,<5 
