@@ -3,6 +3,7 @@ channels:
     - bioconda
     - defaults
 dependencies:
+  - rust
   - pip
   - pip:
     - git+https://github.com/dib-lab/sourmash@add-taxonomy
