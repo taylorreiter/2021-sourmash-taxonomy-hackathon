@@ -1,6 +1,7 @@
+name: sourmash
 channels:
    - conda-forge
    - bioconda
    - defaults
 dependencies:
-   - sourmash>=4.1.0,<5
+   - sourmash>=4.1.2,<5
