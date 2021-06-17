@@ -68,7 +68,7 @@ rule compute_signature:
     output: "outputs/sigs/{library}.sig"
     conda: 'envs/sourmash.yml'
     shell:'''
-    sourmash compute -k 21,31,51 --scaled 2000 --track-abundance -o {output} {input}
+    sourmash compute -k 21,31,51 --scaled 2000 --track-abundance --name {wildcards.library} -o {output} {input}
     '''
 
 rule gather_gtdb_rs202:
