@@ -1,3 +1,4 @@
+name: taxonomy-binder
 channels:
     - conda-forge
     - bioconda
