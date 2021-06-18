@@ -1,5 +1,6 @@
 
-LIBRARIES = ['HSMA33MX']
+#LIBRARIES = ['HSMA33MX']
+LIBRARIES = ['PSM7J177','PSM6XBW3', 'CSM67UEW_TR']
 
 rule all:
     input:
