@@ -1,9 +1,13 @@
 
 #LIBRARIES = ['HSMA33MX']
-LIBRARIES = ['PSM7J177','PSM6XBW3', 'CSM67UEW_TR']
+#LIBRARIES = ['PSM7J177','PSM6XBW3', 'CSM67UEW_TR']
+import pandas as pd 
+library_df = (pd.read_csv('sample_IDs.csv'))  
+LIBRARIES = library_df["library_name"].tolist()
 
 rule all:
     input:
+        #expand("inputs/raw/{library}_R1.fq.gz",library = LIBRARIES)
         expand("outputs/gather/{library}_gather_x_gtdbrs202_reps_k31.csv", library = LIBRARIES),
         expand("outputs/gather/{library}_gather_x_gtdbrs202_k31.csv", library = LIBRARIES),
         expand("outputs/gather/{library}_gather_x_gtdbrs202_genbank_euks_k31.csv", library = LIBRARIES),
@@ -49,9 +53,10 @@ rule remove_host:
         r1 = 'outputs/fastp/{library}_R1.fastp.fq.gz',
         r2 = 'outputs/fastp/{library}_R2.fastp.fq.gz',
         human='inputs/host/hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz'
+    threads: 3
     conda: 'envs/bbduk.yml'
     shell:'''
-    bbduk.sh -Xmx64g t=3 in={input.r1} in2={input.r2} out={output.r1} out2={output.r2} outm={output.human_r1} outm2={output.human_r2} k=31 ref={input.human}
+    bbduk.sh -Xmx64g t={threads} in={input.r1} in2={input.r2} out={output.r1} out2={output.r2} outm={output.human_r1} outm2={output.human_r2} k=31 ref={input.human}
     '''
 
 rule kmer_trim_reads:
